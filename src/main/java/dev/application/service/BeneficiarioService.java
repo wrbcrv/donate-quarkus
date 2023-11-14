@@ -14,4 +14,6 @@ public interface BeneficiarioService {
     void delete(Long id);
 
     List<BeneficiarioResponseDTO> getAll();
+
+    BeneficiarioResponseDTO saveImage (Long id, List<String> imageName);
 }

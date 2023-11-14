@@ -25,7 +25,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 
         entity.setEmail(beneficiarioDTO.email());
         entity.setSenha(beneficiarioDTO.senha());
-        entity.setImageName(beneficiarioDTO.imageName());
+        entity.setImages(beneficiarioDTO.images());
         entity.setCategoria(Categoria.valueOf(beneficiarioDTO.idCategoria()));
         entity.setNome(beneficiarioDTO.nome());
         entity.setDescricao(beneficiarioDTO.descricao());
@@ -43,7 +43,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 
         entity.setEmail(beneficiarioDTO.email());
         entity.setSenha(beneficiarioDTO.senha());
-        entity.setImageName(beneficiarioDTO.imageName());
+        entity.setImages(beneficiarioDTO.images());
         entity.setCategoria(Categoria.valueOf(beneficiarioDTO.idCategoria()));
         entity.setNome(beneficiarioDTO.nome());
         entity.setDescricao(beneficiarioDTO.descricao());
@@ -61,5 +61,13 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
     @Override
     public List<BeneficiarioResponseDTO> getAll() {
         return beneficiarioRepository.listAll().stream().map(e -> BeneficiarioResponseDTO.valueOf(e)).toList();
+    }
+
+    @Override
+    public BeneficiarioResponseDTO saveImage(Long id, List<String> images) {
+        Beneficiario entity = beneficiarioRepository.findById(id);
+        entity.setImages(images);
+
+        return BeneficiarioResponseDTO.valueOf(entity);
     }
 }

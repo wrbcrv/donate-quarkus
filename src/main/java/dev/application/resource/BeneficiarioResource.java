@@ -4,6 +4,7 @@ import dev.application.application.Result;
 import dev.application.dto.BeneficiarioDTO;
 import dev.application.dto.BeneficiarioResponseDTO;
 import dev.application.service.BeneficiarioService;
+import dev.application.service.FileService;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -16,6 +17,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 
 @Path("/beneficiarios")
@@ -25,6 +27,9 @@ public class BeneficiarioResource {
 
     @Inject
     BeneficiarioService beneficiarioService;
+
+    @Inject
+    FileService fileService;
 
     @POST
     public Response create(BeneficiarioDTO beneficiarioDTO) {
@@ -68,5 +73,15 @@ public class BeneficiarioResource {
     @GET
     public Response getAll() {
         return Response.ok(beneficiarioService.getAll()).build();
+    }
+
+    @GET
+    @Path("/image/download/{imageName}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response download(@PathParam("imageName") String imageName) {
+        ResponseBuilder responseBuilder = Response.ok(fileService.download(imageName));
+        responseBuilder.header("Content-Disposition", "attachment;filename=" + imageName);
+
+        return responseBuilder.build();
     }
 }

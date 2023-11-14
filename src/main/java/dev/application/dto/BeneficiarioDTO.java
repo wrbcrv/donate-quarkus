@@ -1,9 +1,11 @@
 package dev.application.dto;
 
+import java.util.List;
+
 public record BeneficiarioDTO(
         String email,
         String senha,
-        String imageName,
+        List<String> images,
         Integer idCategoria,
         String nome,
         String descricao,

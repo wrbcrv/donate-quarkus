@@ -1,22 +1,24 @@
 package dev.application.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 
 @Entity
 public class Beneficiario extends Usuario {
 
-    private String imageName;
+    private List<String> images;
     private Categoria categoria;
     private String nome;
     private String descricao;
     private String pix;
 
-    public String getImageName() {
-        return imageName;
+    public List<String> getImages() {
+        return images;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public Categoria getCategoria() {

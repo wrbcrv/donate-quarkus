@@ -1,5 +1,7 @@
 package dev.application.dto;
 
+import java.util.List;
+
 import dev.application.model.Beneficiario;
 import dev.application.model.Categoria;
 
@@ -7,7 +9,7 @@ public record BeneficiarioResponseDTO(
                 Long id,
                 String email,
                 String senha,
-                String imageName,
+                List<String> images,
                 Categoria categoria,
                 String nome,
                 String descricao,
@@ -18,7 +20,7 @@ public record BeneficiarioResponseDTO(
                                 beneficiario.getId(),
                                 beneficiario.getEmail(),
                                 beneficiario.getSenha(),
-                                beneficiario.getImageName(),
+                                beneficiario.getImages(),
                                 beneficiario.getCategoria(),
                                 beneficiario.getDescricao(),
                                 beneficiario.getNome(),
